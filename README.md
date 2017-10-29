@@ -25,7 +25,7 @@ Add timestamps to terminal prompt by replacing PS1 in .bashrc with<br>
 ```
 PS1='[`date  +"%d-%b-%y %T"`] > '
 ```
-This snipped displays timestamps only - the linked article includes a variant that displays IP addresses, which may be more convenient for you. If you use this version, consider running `ifconfig` as your first command so you get that information logged.
+This snippet displays timestamps only - the linked article includes a variant that displays IP addresses, which may be more convenient for you. If you use this version, consider running `ifconfig` as your first command so you get that information logged.
 
 Check for a segment of .bashrc that reads something like:
 ```
