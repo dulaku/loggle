@@ -7,7 +7,7 @@ Ideas stolen freely from https://www.contextis.com/blog/logging-like-a-lumberjac
 log.sh <log subject> <IP Addr 1> <IP Addr 2> ... <IP Addr N>
 ```
 
-When run, outputs a log (using `script`) of terminal activity into `~/Testing/<log subject>`. If any IP addresses are supplied, also uses `tcpdump` to capture a log of packets between your machine and any of the supplied addresses, and saves the resulting pcap to the same directory.
+When run, outputs a log (using `script`) of terminal activity into `~/Testing/<log subject>`. If any IP addresses are supplied, also uses `tcpdump` to capture a log of packets between your machine and any of the supplied addresses, and saves the resulting pcap to the same directory. All this assumes you're running debian and bash, so some tweaking may be necessary for your use case.
 
 ### Prerequisites: <br>
 ```
@@ -25,11 +25,11 @@ Add timestamps to terminal prompt by replacing PS1 in .bashrc with<br>
   ```
   PS1='[`date  +"%d-%b-%y %T"`] > '
   ```
-<t>If you don't use the IP-recording variant linked in the article, consider running ifconfig to get the information saved in your logs.
+This snipped displays timestamps only - the linked article includes a variant that displays IP addresses, which may be more convenient for you. If you use this version, consider running `ifconfig` as your first command so you get that information logged.
 
 Check for a segment of .bashrc that reads something like:
 ```
-case "$TERM" in
+  case "$TERM" in
   xterm*|rxvt*)
       PS1="\[\e]0;${debian_chroot:+(#debian_chroot)}\u@\h: \w\a\]$PS1"
       ;;
@@ -37,7 +37,7 @@ case "$TERM" in
       ;;
   esac
   ```
-and comment it out. This will stop bash from overwriting your new terminal title.<br>
+and comment it out if you find it. This will stop bash from overwriting your new terminal title.<br>
 
 Ensure you can run tcpdump without root privileges by <br>
 ```
