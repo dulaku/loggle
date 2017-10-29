@@ -1,6 +1,13 @@
 # loggle
 
-Ideas stolen freely from https://www.contextis.com/blog/logging-like-a-lumberjack <br><br>
+Ideas stolen freely from https://www.contextis.com/blog/logging-like-a-lumberjack <br>
+
+### Usage:
+```
+log.sh <log subject> <IP Addr 1> <IP Addr 2> ... <IP Addr N>
+```<br>
+
+When run, outputs a log (using `script`) of terminal activity into `~/Testing/<log subject>`. If any IP addresses are supplied, also uses `tcpdump` to capture a log of packets between your machine and any of the supplied addresses, and saves the resulting pcap to the same directory.
 
 ### Prerequisites: <br>
 ```
