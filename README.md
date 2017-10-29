@@ -4,8 +4,8 @@ Ideas stolen freely from https://www.contextis.com/blog/logging-like-a-lumberjac
 
 ### Prerequisites: <br>
 ```
-tcpdump <br>
-script <br>
+tcpdump
+script
 ```
 
 ### Recommended: <br>
