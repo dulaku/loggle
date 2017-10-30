@@ -34,8 +34,18 @@ client="$1"
 
 export PROMPT_COMMAND='echo -en '"\"\033]0; $client Testing\a\""
 
+if [ ! -d "$HOME/Testing" ]; then
+	mkdir $HOME/Testing
+fi
+if [ ! -d "$HOME/Testing/$client" ]; then
+	mkdir $HOME/Testing/$client
+fi
+if [ ! -d "$HOME/Testing/$client/logs" ]; then
+	mkdir $HOME/Testing/$client/logs
+fi
+
 ips=0
-if [ $# -gt 2 ]; then
+if [ $# -gt 1 ]; then
 	ips=1
 	shift #Ignore the client argument in future steps
 	filter="host $1"
@@ -45,16 +55,6 @@ if [ $# -gt 2 ]; then
 		filter+=" or host "
 		filter+="$i"
 	done
-
-	if [ ! -d "$HOME/Testing" ]; then
-		mkdir $HOME/Testing
-	fi
-	if [ ! -d "$HOME/Testing/$client" ]; then
-		mkdir $HOME/Testing/$client
-	fi
-	if [ ! -d "$HOME/Testing/$client/logs" ]; then
-		mkdir $HOME/Testing/$client/logs
-	fi
 
 	/usr/sbin/tcpdump -i eth0 -tt -vv -nn --no-promiscuous-mode -s 65535 -w $HOME/Testing/$client/logs/$(date +"%d-%b-%y_%H-%M-%S")_packets.pcap $filter > /dev/null 2>&1 &
 	tdpid=$!
